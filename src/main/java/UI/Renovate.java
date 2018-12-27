@@ -159,15 +159,20 @@ public class Renovate implements Runnable {
     private void replayDrawing() {
         if(!vecIt.hasNext()) {
             Image image;
-            if(replayReader.Winner.equals("GOOD")) {
-                InputStream is = getClass().getClassLoader().getResourceAsStream("victory.jpg");
+            if(replayReader.Winner == null) {
+                InputStream is = getClass().getClassLoader().getResourceAsStream("crash.jpg");
                 image = new Image(is);
+                winner = new String("BAD");
+            } else {
+                if (replayReader.Winner.equals("GOOD")) {
+                    InputStream is = getClass().getClassLoader().getResourceAsStream("victory.jpg");
+                    image = new Image(is);
+                } else {
+                    InputStream is = getClass().getClassLoader().getResourceAsStream("defeat.jpg");
+                    image = new Image(is);
+                }
+                winner = new String(replayReader.Winner);
             }
-            else {
-                InputStream is = getClass().getClassLoader().getResourceAsStream("defeat.jpg");
-                image = new Image(is);
-            }
-            winner = new String(replayReader.Winner);
             battleField.clearCreature();
 
             GraphicsContext context = canvas.getGraphicsContext2D();
