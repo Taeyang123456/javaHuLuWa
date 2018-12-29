@@ -124,7 +124,7 @@ public class Renovate implements Runnable {
             try {
                 String filePath = System.getProperty("user.dir");
                 //System.out.println(filePath);
-                out = new FileWriter(filePath + File.separator + "record.txt");
+                out = new FileWriter(filePath + File.separator + "tempRecord.txt");
             }catch (Exception e) {
                 e.printStackTrace();
             }
